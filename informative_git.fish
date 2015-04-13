@@ -38,6 +38,15 @@ function fish_vi_prompt_cm --description "Displays the current mode"
   set_color normal
 end
 
+function fish_right_prompt
+  set -l st $status
+
+  if [ $st != 0 ];
+    echo (set_color red) ↵ $st(set_color normal)
+  end
+  echo -n -s $dark_gray ' ['(date +%H:%M:%S)'] '
+end
+
 function fish_prompt --description 'Write out the prompt'
 
 	set -l last_status $status
@@ -58,7 +67,7 @@ function fish_prompt --description 'Write out the prompt'
 	set_color $fish_color_error
 	end
 
-	echo -n ' $ '
+	echo -n ' ∫ '
 
 	set_color normal
 end
