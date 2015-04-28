@@ -11,12 +11,7 @@ alias sshb="ssh jacques@10.10.10.127"
 alias git="hub"
 
 alias ff="find . -name"
-function vi
-    set -x -l PATH /usr/bin $PATH 2> /dev/null
-    # echo $PATH
-    /usr/local/bin/nvim $argv
-end
-
+alias vi="nvim"
 
 alias i=ipython
 alias pyld="pylint --load-plugins pylint_django"
@@ -32,8 +27,26 @@ function fish_user_key_bindings
     bind -M insert \ce end-of-line
 end
 
+function -e fish_preexec _run_fasd
+    # fasd --proc (fish_split (fasd --sanitize $argv)) > /dev/null 2>&1
+    fasd --proc (fasd --sanitize $argv | tr -s ' ' \n) > /dev/null 2>&1
+end
+
+function j
+    set -l dir (fasd -de "printf %s" "$argv")
+    if test "$dir" = ""
+        echo "no matching directory"
+        return 1
+    end
+    cd $dir
+end
+
+function e
+    fasd -fe vim "$argv"
+end
+
 . /Users/jacques/.config/fish/jenv.fish
-. /Users/jacques/.config/fish/j.fish
+# . /Users/jacques/.config/fish/j.fish
 . /Users/jacques/.config/fish/conda.fish
 . /Users/jacques/.config/fish/functions/fzf.fish
 . /Users/jacques/.config/fish/functions/fzf_wrap.fish
