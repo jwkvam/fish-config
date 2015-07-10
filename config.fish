@@ -1,5 +1,6 @@
 set PATH /Users/jacques/miniconda/bin /Developer/NVIDIA/CUDA-7.0/bin /Users/jacques/.local/bin /usr/local/bin $PATH
 set DYLD_LIBRARY_PATH /Developer/NVIDIA/CUDA-7.0/lib $DYLD_LIBRARY_PATH
+set DYLD_FALLBACK_LIBRARY_PATH $DYLD_FALLBACK_LIBRARY_PATH /Users/jacques/miniconda/lib
 set EDITOR vi
 set NVIM_TUI_ENABLE_TRUE_COLOR 1
 
@@ -8,7 +9,7 @@ set -x PYTHONPATH ~/dev/apollo
 set -x DJANGO_SETTINGS_MODULE apollo.settings.data
 
 alias sshb="ssh jacques@10.10.10.127"
-alias git="hub"
+# alias git="hub"
 
 alias ff="find . -name"
 alias vi="nvim"
