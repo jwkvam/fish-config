@@ -8,10 +8,14 @@ set NVIM_TUI_ENABLE_TRUE_COLOR 1
 set -x DJANGO_SETTINGS_MODULE apollo.settings.data
 set -x PYTHONPATH ~/dev/apollo
 set -x PYTHONPATH ~/dev/rover:$PYTHONPATH
+set -x PYTHONPATH ~/dev/capcom:$PYTHONPATH
 
 alias sshb="ssh jacques@harmonic.local"
 alias ff="find . -name"
 alias vi="nvim"
+
+# I always forget the dot
+alias pytest='py.test'
 
 alias i=ipython
 
