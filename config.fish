@@ -9,6 +9,7 @@ set -x DJANGO_SETTINGS_MODULE apollo.settings.data
 set -x PYTHONPATH ~/dev/apollo
 set -x PYTHONPATH ~/dev/rover:$PYTHONPATH
 set -x PYTHONPATH ~/dev/capcom:$PYTHONPATH
+set -x GOPATH ~/.local
 
 alias sshb="ssh jacques@harmonic.local"
 alias ff="find . -name"
@@ -55,3 +56,4 @@ function vf
 end
 
 source (conda info --root)/etc/fish/conf.d/conda.fish
+. ~/.config/fish/private.fish
