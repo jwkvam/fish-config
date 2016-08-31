@@ -11,6 +11,9 @@ set -x PYTHONPATH ~/dev/rover:$PYTHONPATH
 set -x PYTHONPATH ~/dev/capcom:$PYTHONPATH
 set -x GOPATH ~/.local
 
+set -x FZF_DEFAULT_COMMAND 'ag -g ""'
+set -x FZF_DEFAULT_OPTS "--inline-info"
+
 alias sshb="ssh jacques@harmonic.local"
 alias ff="find . -name"
 alias vi="nvim"
