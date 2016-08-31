@@ -14,6 +14,7 @@ set -x GOPATH ~/.local
 alias sshb="ssh jacques@harmonic.local"
 alias ff="find . -name"
 alias vi="nvim"
+alias magit="nvim -c MagitOnly"
 
 # I always forget the dot
 alias pytest='py.test'
