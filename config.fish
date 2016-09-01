@@ -12,6 +12,9 @@ set -x PYTHONPATH ~/dev/rover:$PYTHONPATH
 set -x PYTHONPATH ~/dev/capcom:$PYTHONPATH
 set -x GOPATH ~/.local
 
+# don't generate pyc files
+set -x PYTHONDONTWRITEBYTECODE 1
+
 set -x FZF_DEFAULT_COMMAND 'ag -g ""'
 set -x FZF_DEFAULT_OPTS "--inline-info"
 
