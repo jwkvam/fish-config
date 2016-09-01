@@ -1,10 +1,11 @@
 # set PATH /Users/jacques/miniconda/bin /Developer/NVIDIA/CUDA-7.0/bin /Users/jacques/.local/bin /usr/local/bin $PATH
-set PATH /Users/jacques/miniconda/bin /Users/jacques/.local/bin /usr/local/bin $PATH
+set PATH /Users/jacques/miniconda/bin /Users/jacques/.local/bin /usr/local/bin /usr/local/texlive/2016/bin/x86_64-darwin $PATH
 #set DYLD_LIBRARY_PATH /Developer/NVIDIA/CUDA-7.0/lib $DYLD_LIBRARY_PATH
 set DYLD_FALLBACK_LIBRARY_PATH $DYLD_FALLBACK_LIBRARY_PATH /Users/jacques/miniconda/lib
 set EDITOR nvim
 set NVIM_TUI_ENABLE_TRUE_COLOR 1
 
+set -x MACOSX_DEPLOYMENT_TARGET "10.12"
 set -x DJANGO_SETTINGS_MODULE apollo.settings.data
 set -x PYTHONPATH ~/dev/apollo
 set -x PYTHONPATH ~/dev/rover:$PYTHONPATH
