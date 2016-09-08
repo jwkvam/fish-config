@@ -5,7 +5,7 @@ set DYLD_FALLBACK_LIBRARY_PATH $DYLD_FALLBACK_LIBRARY_PATH /Users/jacques/minico
 set EDITOR nvim
 set NVIM_TUI_ENABLE_TRUE_COLOR 1
 
-set -x MACOSX_DEPLOYMENT_TARGET "10.12"
+# set -x MACOSX_DEPLOYMENT_TARGET "10.12"
 set -x DJANGO_SETTINGS_MODULE apollo.settings.data
 set -x PYTHONPATH ~/dev/apollo
 set -x PYTHONPATH ~/dev/rover:$PYTHONPATH
@@ -61,6 +61,15 @@ end
 
 function vf
     fzf > /tmp/fzf.result; and nvim (cat /tmp/fzf.result)
+end
+
+function fish_right_prompt
+  set -l st $status
+
+  if [ $st != 0 ];
+    echo (set_color red) ↵ $st(set_color normal)
+  end
+  echo -n -s $dark_gray '['(date +%H:%M:%S)']'
 end
 
 source (conda info --root)/etc/fish/conf.d/conda.fish
