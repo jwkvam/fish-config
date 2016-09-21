@@ -1,9 +1,10 @@
 # set PATH /Users/jacques/miniconda/bin /Developer/NVIDIA/CUDA-7.0/bin /Users/jacques/.local/bin /usr/local/bin $PATH
-set PATH /Users/jacques/miniconda/bin /Users/jacques/.local/bin /usr/local/bin /usr/local/texlive/2016/bin/x86_64-darwin $PATH
+set PATH /Users/jacques/miniconda/bin /Users/jacques/.local/bin /usr/local/bin /usr/local/sbin /usr/local/texlive/2016/bin/x86_64-darwin $PATH
 #set DYLD_LIBRARY_PATH /Developer/NVIDIA/CUDA-7.0/lib $DYLD_LIBRARY_PATH
 set DYLD_FALLBACK_LIBRARY_PATH $DYLD_FALLBACK_LIBRARY_PATH /Users/jacques/miniconda/lib
-set EDITOR nvim
-set NVIM_TUI_ENABLE_TRUE_COLOR 1
+set -x EDITOR nvim
+set -x NVIM_TUI_ENABLE_TRUE_COLOR 1
+set -x NVIM_TUI_ENABLE_CURSOR_SHAPE 1
 
 # set -x MACOSX_DEPLOYMENT_TARGET "10.12"
 set -x DJANGO_SETTINGS_MODULE apollo.settings.data
@@ -22,6 +23,8 @@ alias sshb="ssh jacques@harmonic.local"
 alias ff="find . -name"
 alias vi="nvim"
 alias magit="nvim -c MagitOnly"
+alias pag="ps aux | ag"
+alias pug="ps ux | ag"
 
 # I always forget the dot
 alias pytest='py.test'
