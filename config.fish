@@ -19,15 +19,16 @@ set -x TF_BINARY_URL_PY2 https://storage.googleapis.com/tensorflow/mac/cpu/tenso
 # don't generate pyc files
 set -x PYTHONDONTWRITEBYTECODE 1
 
-set -x FZF_DEFAULT_COMMAND 'ag -g ""'
+# set -x FZF_DEFAULT_COMMAND 'ag -g ""'
+set -x FZF_DEFAULT_COMMAND 'rg --files ""'
 set -x FZF_DEFAULT_OPTS "--inline-info"
 
 alias sshb="ssh jacques@harmonic.local"
 alias ff="find . -name"
 alias vi="nvim"
 alias magit="nvim -c MagitOnly"
-alias pag="ps aux | ag"
-alias pug="ps ux | ag"
+alias pag="ps aux | rg -N"
+alias pug="ps ux | rg -N"
 
 # I always forget the dot
 alias pytest='py.test'
