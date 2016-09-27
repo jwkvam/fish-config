@@ -23,6 +23,8 @@ set -x PYTHONDONTWRITEBYTECODE 1
 set -x FZF_DEFAULT_COMMAND 'rg --files ""'
 set -x FZF_DEFAULT_OPTS "--inline-info"
 
+alias rgs=rg
+alias rg="rg -S"
 alias sshb="ssh jacques@harmonic.local"
 alias ff="find . -name"
 alias vi="nvim"
