@@ -20,7 +20,7 @@ set -x TF_BINARY_URL_PY2 https://storage.googleapis.com/tensorflow/mac/cpu/tenso
 set -x PYTHONDONTWRITEBYTECODE 1
 
 # set -x FZF_DEFAULT_COMMAND 'ag -g ""'
-set -x FZF_DEFAULT_COMMAND 'rg --files ""'
+set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --follow ""'
 set -x FZF_DEFAULT_OPTS "--inline-info"
 
 alias rgs=rg
