@@ -48,21 +48,24 @@ alias i=ipython
 #     commandline -f repaint
 #     rm -f /tmp/fzf.result
 # end
+#
+# function fzf-history-widget
+#     history | eval fzf +s +m --tiebreak=index --toggle-sort=ctrl-r $FZF_CTRL_R_OPTS -q '(commandline)' > /tmp/fzf.result
+#     and commandline -- (cat /tmp/fzf.result)
+#     commandline -f repaint
+#     rm -f /tmp/fzf.result
+# end
 
-function fzf-history-widget
-    history | eval fzf +s +m --tiebreak=index --toggle-sort=ctrl-r $FZF_CTRL_R_OPTS -q '(commandline)' > /tmp/fzf.result
-    and commandline -- (cat /tmp/fzf.result)
-    commandline -f repaint
-    rm -f /tmp/fzf.result
-end
 
+. ~/.config/fish/key-bindings.fish
 function fish_user_key_bindings
     bind -M insert \ca beginning-of-line
     bind -M insert \ce end-of-line
     bind -M insert \cf accept-autosuggestion
     bind -M insert \cs forward-bigword forward-word
+    fzf_key_bindings
     # bind -M insert \cr history-search-backward
-    bind -M insert \cr fzf-history-widget
+    # bind -M insert \cr fzf-history-widget
 end
 fish_vi_key_bindings
 fish_user_key_bindings
@@ -124,4 +127,3 @@ end
 
 source (conda info --root)/etc/fish/conf.d/conda.fish
 . ~/.config/fish/private.fish
-# . ~/.config/fish/key-bindings.fish
