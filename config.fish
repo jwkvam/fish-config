@@ -37,11 +37,32 @@ alias pytest='py.test'
 
 alias i=ipython
 
+# function fzf-file-widget
+#     set -q FZF_CTRL_T_COMMAND; or set -l FZF_CTRL_T_COMMAND "
+#     command find -L . \\( -path '*/\\.*' -o -fstype 'dev' -o -fstype 'proc' \\) -prune \
+#       -o -type f -print \
+#       -o -type d -print \
+#       -o -type l -print 2> /dev/null | sed 1d | cut -b3-"
+#     eval "$FZF_CTRL_T_COMMAND | "(__fzfcmd)" -m $FZF_CTRL_T_OPTS > $TMPDIR/fzf.result"
+#     and for i in (seq 20); commandline -i (cat /tmp/fzf.result | __fzf_escape) 2> /dev/null; and break; sleep 0.1; end
+#     commandline -f repaint
+#     rm -f /tmp/fzf.result
+# end
+
+function fzf-history-widget
+    history | eval fzf +s +m --tiebreak=index --toggle-sort=ctrl-r $FZF_CTRL_R_OPTS -q '(commandline)' > /tmp/fzf.result
+    and commandline -- (cat /tmp/fzf.result)
+    commandline -f repaint
+    rm -f /tmp/fzf.result
+end
+
 function fish_user_key_bindings
     bind -M insert \ca beginning-of-line
     bind -M insert \ce end-of-line
     bind -M insert \cf accept-autosuggestion
     bind -M insert \cs forward-bigword forward-word
+    # bind -M insert \cr history-search-backward
+    bind -M insert \cr fzf-history-widget
 end
 fish_vi_key_bindings
 fish_user_key_bindings
@@ -87,7 +108,10 @@ end
 
 function vf
     fzf > /tmp/fzf.result; and nvim (cat /tmp/fzf.result)
+    rm -f /tmp/fzf.result
 end
+
+
 
 function fish_right_prompt
   set -l st $status
@@ -100,3 +124,4 @@ end
 
 source (conda info --root)/etc/fish/conf.d/conda.fish
 . ~/.config/fish/private.fish
+# . ~/.config/fish/key-bindings.fish
