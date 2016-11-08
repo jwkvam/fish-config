@@ -37,15 +37,15 @@ alias pytest='py.test'
 
 alias i=ipython
 
-
-function custom_key_binds
-    fish_vi_key_bindings
-
+function fish_user_key_bindings
     bind -M insert \ca beginning-of-line
     bind -M insert \ce end-of-line
     bind -M insert \cf accept-autosuggestion
+    bind -M insert \cs forward-bigword forward-word
 end
-set -g fish_key_bindings custom_key_binds
+fish_vi_key_bindings
+fish_user_key_bindings
+
 
 # function hybrid_bindings --description "Vi-style bindings that inherit emacs-style bindings in all modes"
 #     for mode in default insert visual
