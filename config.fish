@@ -6,6 +6,13 @@ set -x EDITOR nvim
 set -x NVIM_TUI_ENABLE_TRUE_COLOR 1
 set -x NVIM_TUI_ENABLE_CURSOR_SHAPE 1
 
+
+# PYSPARK
+set -x PYSPARK_DRIVER_PYTHON jupyter
+set -x PYSPARK_DRIVER_PYTHON_OPTS notebook
+set -x PYSPARK_PYTHON python
+
+
 # set -x MACOSX_DEPLOYMENT_TARGET "10.12"
 set -x DJANGO_SETTINGS_MODULE apollo.settings.data
 set -x PYTHONPATH ~/dev/apollo
