@@ -20,14 +20,13 @@ set -x PYTHONPATH ~/dev/rover:$PYTHONPATH
 set -x PYTHONPATH ~/dev/capcom:$PYTHONPATH
 set -x GOPATH ~/.local
 # Mac OS X, CPU only, Python 3.4 or 3.5:
-set -x TF_BINARY_URL https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-0.10.0-py3-none-any.whl
-set -x TF_BINARY_URL_PY2 https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-0.10.0-py2-none-any.whl
+set -x TF_BINARY_URL https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-0.11.0-py3-none-any.whl
+set -x TF_BINARY_URL_PY2 https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-0.11.0-py2-none-any.whl
 
 # don't generate pyc files
 set -x PYTHONDONTWRITEBYTECODE 1
 
-# set -x FZF_DEFAULT_COMMAND 'ag -g ""'
-set -x FZF_DEFAULT_COMMAND 'rg --files --follow ""'
+set -x FZF_DEFAULT_COMMAND 'rg --files'
 set -x FZF_DEFAULT_OPTS "--inline-info"
 
 alias rgs=rg
