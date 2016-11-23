@@ -29,6 +29,8 @@ set -x PYTHONDONTWRITEBYTECODE 1
 set -x FZF_DEFAULT_COMMAND 'rg --files'
 set -x FZF_DEFAULT_OPTS "--inline-info"
 
+set -x FZF_CTRL_T_COMMAND 'rg --files'
+
 alias rgs=rg
 alias rg="rg -S"
 alias sshb="ssh jacques@harmonic.local"
