@@ -118,7 +118,7 @@ function e
 end
 
 function vf
-    fzf-file-widget > /tmp/fzfnv.result; and nvim (cat /tmp/fzfnv.result)
+    fzf > /tmp/fzfnv.result; and nvim (cat /tmp/fzfnv.result)
     rm -f /tmp/fzfnv.result
 end
 
