@@ -72,13 +72,13 @@ function fzf_key_bindings
 
   bind \ct fzf-file-widget
   bind \cr fzf-history-widget
-  bind \ec fzf-cd-widget
+  bind \cg fzf-cd-widget
   bind \co fzf-nvim-file-widget
 
   if bind -M insert > /dev/null 2>&1
     bind -M insert \ct fzf-file-widget
     bind -M insert \cr fzf-history-widget
-    bind -M insert \ec fzf-cd-widget
+    bind -M insert \cg fzf-cd-widget
     bind -M insert \co fzf-nvim-file-widget
   end
 end
