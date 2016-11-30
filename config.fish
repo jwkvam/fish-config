@@ -30,7 +30,7 @@ set -x FZF_DEFAULT_COMMAND 'rg --files'
 set -x FZF_DEFAULT_OPTS "--inline-info"
 
 set -x FZF_CTRL_T_COMMAND 'rg --files'
-set -x FZF_CTRL_T_OPTS '--preview "highlight -O ansi {} | head -24"'
+set -x FZF_CTRL_T_OPTS '--preview "highlight --failsafe -O ansi {} 2> /dev/null | head -200"'
 
 alias rgs=rg
 alias rg="rg -S"
