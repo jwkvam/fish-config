@@ -30,6 +30,9 @@ set -x FZF_DEFAULT_COMMAND 'rg --files'
 set -x FZF_DEFAULT_OPTS "--inline-info"
 
 set -x FZF_CTRL_T_COMMAND 'rg --files'
+
+# great material here!
+# https://github.com/junegunn/dotfiles/blob/master/bashrc
 set -x FZF_CTRL_T_OPTS '--preview "highlight --failsafe -O ansi {} 2> /dev/null | head -200"'
 
 alias rgs=rg
