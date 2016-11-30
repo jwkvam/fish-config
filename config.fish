@@ -49,6 +49,7 @@ alias pytest='py.test'
 
 alias i=ipython
 
+
 # function fzf-file-widget
 #     set -q FZF_CTRL_T_COMMAND; or set -l FZF_CTRL_T_COMMAND "
 #     command find -L . \\( -path '*/\\.*' -o -fstype 'dev' -o -fstype 'proc' \\) -prune \
@@ -126,7 +127,14 @@ function vf
     rm -f /tmp/fzfnv.result
 end
 
-
+function fco
+    # set branches (git branch --all | grep -v HEAD             | \
+    #               sed "s/.* //"    | sed "s#remotes/[^/]*/##" | \
+    #               sort -u          | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}')
+    git branch | sed "s/..//" | fzf > /tmp/fzf.result
+    git checkout (cat /tmp/fzf.result)
+    rm -f /tmp/fzf.result
+end
 
 function fish_right_prompt
   set -l st $status
