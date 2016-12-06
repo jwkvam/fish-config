@@ -21,8 +21,6 @@ set -x PYSPARK_DRIVER_PYTHON jupyter
 set -x PYSPARK_DRIVER_PYTHON_OPTS notebook
 set -x PYSPARK_PYTHON python
 
-
-# set -x MACOSX_DEPLOYMENT_TARGET "10.12"
 set -x DJANGO_SETTINGS_MODULE apollo.settings.data
 set -x PYTHONPATH ~/dev/apollo
 set -x PYTHONPATH ~/dev/rover:$PYTHONPATH
@@ -55,29 +53,7 @@ alias pug="ps ux | rg -N"
 
 # I always forget the dot
 alias pytest='py.test'
-
 alias i=ipython
-
-
-# function fzf-file-widget
-#     set -q FZF_CTRL_T_COMMAND; or set -l FZF_CTRL_T_COMMAND "
-#     command find -L . \\( -path '*/\\.*' -o -fstype 'dev' -o -fstype 'proc' \\) -prune \
-#       -o -type f -print \
-#       -o -type d -print \
-#       -o -type l -print 2> /dev/null | sed 1d | cut -b3-"
-#     eval "$FZF_CTRL_T_COMMAND | "(__fzfcmd)" -m $FZF_CTRL_T_OPTS > $TMPDIR/fzf.result"
-#     and for i in (seq 20); commandline -i (cat /tmp/fzf.result | __fzf_escape) 2> /dev/null; and break; sleep 0.1; end
-#     commandline -f repaint
-#     rm -f /tmp/fzf.result
-# end
-#
-# function fzf-history-widget
-#     history | eval fzf +s +m --tiebreak=index --toggle-sort=ctrl-r $FZF_CTRL_R_OPTS -q '(commandline)' > /tmp/fzf.result
-#     and commandline -- (cat /tmp/fzf.result)
-#     commandline -f repaint
-#     rm -f /tmp/fzf.result
-# end
-
 
 . ~/.config/fish/key-bindings.fish
 function fish_user_key_bindings
@@ -152,4 +128,6 @@ function fish_right_prompt
 end
 
 source (conda info --root)/etc/fish/conf.d/conda.fish
-. ~/.config/fish/private.fish
+if test -e ~/.config/fish/private.fish
+    . ~/.config/fish/private.fish
+end
