@@ -1,7 +1,16 @@
 # set PATH /Users/jacques/miniconda/bin /Developer/NVIDIA/CUDA-7.0/bin /Users/jacques/.local/bin /usr/local/bin $PATH
-set PATH /Users/jacques/miniconda/bin /Users/jacques/.local/bin /usr/local/bin /usr/local/sbin /usr/local/texlive/2016/bin/x86_64-darwin $PATH
+# set PATH /Users/jacques/miniconda/bin /Users/jacques/.local/bin /usr/local/bin /usr/local/sbin /usr/local/texlive/2016/bin/x86_64-darwin $PATH
+set PATH ~/miniconda/bin ~/.local/bin /usr/local/bin /usr/local/sbin $PATH
+if contains (uname) "Linux"
+    set PATH ~/.linuxbrew/bin /usr/local/cuda/bin $PATH
+else
+    set PATH /usr/local/texlive/2016/bin/x86_64-darwin $PATH
+end
 #set DYLD_LIBRARY_PATH /Developer/NVIDIA/CUDA-7.0/lib $DYLD_LIBRARY_PATH
 set DYLD_FALLBACK_LIBRARY_PATH $DYLD_FALLBACK_LIBRARY_PATH /Users/jacques/miniconda/lib
+if contains (uname) "Linux"
+    set LD_LIBRARY_PATH /usr/local/cuda/lib64
+end
 set -x EDITOR nvim
 set -x NVIM_TUI_ENABLE_TRUE_COLOR 1
 set -x NVIM_TUI_ENABLE_CURSOR_SHAPE 1
