@@ -136,10 +136,7 @@ function vf
     rm -f /tmp/fzfnv.result
 end
 
-function fco
-    # set branches (git branch --all | grep -v HEAD             | \
-    #               sed "s/.* //"    | sed "s#remotes/[^/]*/##" | \
-    #               sort -u          | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}')
+function fbr
     git branch | sed "s/..//" | fzf > /tmp/fzf.result
     git checkout (cat /tmp/fzf.result)
     rm -f /tmp/fzf.result
