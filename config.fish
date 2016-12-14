@@ -24,7 +24,7 @@ set -x PYSPARK_PYTHON python
 set -x DJANGO_SETTINGS_MODULE apollo.settings.data
 set -x PYTHONPATH ~/dev/apollo
 set -x PYTHONPATH ~/dev/rover:$PYTHONPATH
-set -x PYTHONPATH ~/dev/capcom:$PYTHONPATH
+# set -x PYTHONPATH ~/dev/capcom:$PYTHONPATH
 set -x GOPATH ~/.local
 # Mac OS X, CPU only, Python 3.4 or 3.5:
 set -x TF_BINARY_URL https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-0.12.0rc0-py3-none-any.whl
@@ -116,6 +116,47 @@ function fbr
     git branch | sed "s/..//" | fzf > /tmp/fzf.result
     git checkout (cat /tmp/fzf.result)
     rm -f /tmp/fzf.result
+end
+
+function fish_prompt
+    if not set -q __fish_git_prompt_show_informative_status
+        set -g __fish_git_prompt_show_informative_status 1
+    end
+
+        if not set -q __fish_prompt_normal
+        set -g __fish_prompt_normal (set_color normal)
+    end
+
+    set -l color_cwd
+    set -l prefix
+    switch $USER
+        case root toor
+            if set -q fish_color_cwd_root
+                set color_cwd $fish_color_cwd_root
+            else
+                set color_cwd $fish_color_cwd
+            end
+            set suffix '#'
+        case '*'
+            set color_cwd $fish_color_cwd
+            set suffix '$'
+    end
+
+    # host
+    set host (hostname | cut -c1-5)
+    echo -n "$host "
+
+    # PWD
+    set_color $color_cwd
+    echo -n (prompt_pwd)
+    set_color normal
+
+    printf '%s ' (__fish_vcs_prompt)
+
+    echo -n "$suffix "
+
+    set_color normal
+
 end
 
 function fish_right_prompt
