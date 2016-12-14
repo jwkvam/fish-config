@@ -64,9 +64,6 @@ function fish_user_key_bindings
     bind -M insert \cs forward-bigword forward-word
     fzf_key_bindings
 
-    bind \co fzf-file-widget
-    bind -M insert \co fzf-file-widget
-
     bind \cg fzf-cd-widget
     bind -M insert \cg fzf-cd-widget
     # bind -M insert \cr history-search-backward
@@ -75,26 +72,33 @@ end
 fish_vi_key_bindings
 fish_user_key_bindings
 
+# Store last token in $dir as root for the 'find' command
+function fzf-nvim-file-widget -d "List files and folders"
+    set -l dir (commandline -t)
+    # The commandline token might be escaped, we need to unescape it.
+    set dir (eval "printf '%s' $dir")
+    if [ ! -d "$dir" ]
+      set dir .
+    end
+    # Some 'find' versions print undesired duplicated slashes if the path ends with slashes.
+    set dir (string replace --regex '(.)/+$' '$1' "$dir")
 
-# function hybrid_bindings --description "Vi-style bindings that inherit emacs-style bindings in all modes"
-#     for mode in default insert visual
-#         fish_default_key_bindings -M $mode
-#     end
-#     fish_vi_key_bindings --no-erase
-# end
-# set -g fish_key_bindings hybrid_bindings
+    # "-path \$dir'*/\\.*'" matches hidden files/folders inside $dir but not
+    # $dir itself, even if hidden.
+    set -q FZF_CTRL_T_COMMAND; or set -l FZF_CTRL_T_COMMAND "
+    command find -L \$dir \\( -path \$dir'*/\\.*' -o -fstype 'devfs' -o -fstype 'devtmpfs' \\) -prune \
+    -o -type f -print \
+    -o -type d -print \
+    -o -type l -print 2> /dev/null | sed '1d; s#^\./##'"
 
+    eval "$FZF_CTRL_T_COMMAND | "(__fzfcmd)" -m $FZF_CTRL_T_OPTS" | while read -l r; set result $result $r; end
+    nvim $result
+    commandline -f repaint
+end
 
-# function fish_user_key_bindings
-#     fish_vi_key_bindings
-#
-#     # bind -M insert \ck backward-kill-line
-#     bind -M insert \ck kill-whole-line
-#     bind -M insert \cl 'clear; commandline -f repaint'
-#     bind -M insert \cf accept-autosuggestion
-#     bind -M insert \ca beginning-of-line
-#     bind -M insert \ce end-of-line
-# end
+bind \co fzf-nvim-file-widget
+bind -M insert \co fzf-nvim-file-widget
+
 
 function -e fish_preexec _run_fasd
     # fasd --proc (fish_split (fasd --sanitize $argv)) > /dev/null 2>&1
