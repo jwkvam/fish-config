@@ -55,13 +55,20 @@ alias pug="ps ux | rg -N"
 alias pytest='py.test'
 alias i=ipython
 
-. ~/.config/fish/key-bindings.fish
+# . ~/.config/fish/key-bindings.fish
+. ~/.config/fish/functions/fzf_key_bindings.fish
 function fish_user_key_bindings
     bind -M insert \ca beginning-of-line
     bind -M insert \ce end-of-line
     bind -M insert \cf accept-autosuggestion
     bind -M insert \cs forward-bigword forward-word
     fzf_key_bindings
+
+    bind \co fzf-file-widget
+    bind -M insert \co fzf-file-widget
+
+    bind \cg fzf-cd-widget
+    bind -M insert \cg fzf-cd-widget
     # bind -M insert \cr history-search-backward
     # bind -M insert \cr fzf-history-widget
 end
@@ -107,10 +114,10 @@ function e
     fasd -fe vim "$argv"
 end
 
-function vf
-    fzf > /tmp/fzfnv.result; and nvim (cat /tmp/fzfnv.result)
-    rm -f /tmp/fzfnv.result
-end
+# function vf
+#     fzf > /tmp/fzfnv.result; and nvim (cat /tmp/fzfnv.result)
+#     rm -f /tmp/fzfnv.result
+# end
 
 function fbr
     git branch | sed "s/..//" | fzf > /tmp/fzf.result
