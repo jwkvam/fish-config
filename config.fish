@@ -150,8 +150,10 @@ function fish_prompt
     end
 
     # host
-    set host (hostname | cut -c1-5)
+    set_color $fish_color_host
+    set host (hostname | cut -c1-3)
     echo -n "$host "
+    set_color normal
 
     # PWD
     set_color $color_cwd
