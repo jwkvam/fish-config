@@ -54,21 +54,7 @@ alias i=ipython
 
 # . ~/.config/fish/key-bindings.fish
 . ~/.config/fish/functions/fzf_key_bindings.fish
-function fish_user_key_bindings
-    bind -M insert \ca beginning-of-line
-    bind -M insert \ce end-of-line
-    bind -M insert \cf accept-autosuggestion
-    bind -M insert \cs forward-bigword forward-word
-    fzf_key_bindings
-
-    bind \cg fzf-cd-widget
-    bind -M insert \cg fzf-cd-widget
-    # bind -M insert \cr history-search-backward
-    # bind -M insert \cr fzf-history-widget
-end
-fish_vi_key_bindings
-fish_user_key_bindings
-
+ 
 # Store last token in $dir as root for the 'find' command
 function fzf-nvim-file-widget -d "List files and folders"
     set -l dir (commandline -t)
@@ -93,8 +79,24 @@ function fzf-nvim-file-widget -d "List files and folders"
     commandline -f repaint
 end
 
-bind \co fzf-nvim-file-widget
-bind -M insert \co fzf-nvim-file-widget
+function fish_user_key_bindings
+    bind -M insert \ca beginning-of-line
+    bind -M insert \ce end-of-line
+    bind -M insert \cf accept-autosuggestion
+    bind -M insert \cs forward-bigword forward-word
+    fzf_key_bindings
+
+    bind \cg fzf-cd-widget
+    bind -M insert \cg fzf-cd-widget
+    bind \co fzf-nvim-file-widget
+    bind -M insert \co fzf-nvim-file-widget
+    # bind -M insert \cr history-search-backward
+    # bind -M insert \cr fzf-history-widget
+end
+fish_vi_key_bindings
+fish_user_key_bindings
+
+
 
 
 function -e fish_preexec _run_fasd
