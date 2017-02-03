@@ -99,10 +99,11 @@ fish_user_key_bindings
 
 
 
-function -e fish_preexec _run_fasd
-    # fasd --proc (fish_split (fasd --sanitize $argv)) > /dev/null 2>&1
-    fasd --proc (fasd --sanitize $argv | tr -s ' ' \n) > /dev/null 2>&1
+function _run_fasd -e fish_preexec
+    command fasd --proc (command fasd --sanitize "$argv" | tr -s ' ' \n) > "/dev/null" 2>&1 &
 end
+# fasd --proc (fasd --sanitize $argv | tr -s ' ' \n) > /dev/null 2>&1
+# fasd --proc (fish_split (fasd --sanitize $argv)) > /dev/null 2>&1
 
 function j
     set -l dir (fasd -de "printf %s" "$argv")
