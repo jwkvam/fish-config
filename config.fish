@@ -2,7 +2,7 @@
 # set PATH /Users/jacques/miniconda/bin /Users/jacques/.local/bin /usr/local/bin /usr/local/sbin /usr/local/texlive/2016/bin/x86_64-darwin $PATH
 set PATH ~/miniconda/bin ~/.local/bin /usr/local/bin /usr/local/sbin $PATH
 if contains (uname) "Linux"
-    set PATH ~/.linuxbrew/bin /usr/local/cuda/bin $PATH
+    set PATH ~/.linuxbrew/bin ~/.linuxbrew/sbin /usr/local/cuda/bin $PATH
 else
     set PATH /usr/local/texlive/2016/bin/x86_64-darwin $PATH
 end
