@@ -6,7 +6,9 @@ if contains (uname) "Linux"
 else
     set PATH /usr/local/texlive/2016/bin/x86_64-darwin $PATH
 end
-set PATH ~/miniconda/bin ~/.local/bin $PATH
+set PATH ~/miniconda/bin $PATH
+source (conda info --root)/etc/fish/conf.d/conda.fish
+set PATH ~/.local/bin $PATH
 #set DYLD_LIBRARY_PATH /Developer/NVIDIA/CUDA-7.0/lib $DYLD_LIBRARY_PATH
 set DYLD_FALLBACK_LIBRARY_PATH $DYLD_FALLBACK_LIBRARY_PATH /Users/jacques/miniconda/lib
 if contains (uname) "Linux"
@@ -234,7 +236,6 @@ function fish_right_prompt
   echo -n -s $dark_gray '['(date +%H:%M:%S)']'
 end
 
-source (conda info --root)/etc/fish/conf.d/conda.fish
 if test -e ~/.config/fish/private.fish
     . ~/.config/fish/private.fish
 end
