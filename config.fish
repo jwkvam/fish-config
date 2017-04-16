@@ -47,6 +47,7 @@ alias rg="rg -S"
 alias sshb="ssh jacques@harmonic.local"
 alias ff="find . -name"
 alias vi="nvim"
+alias v="nvim"
 alias magit="nvim -c MagitOnly"
 alias pag="ps aux | rg -N"
 alias pug="ps ux | rg -N"
@@ -130,6 +131,27 @@ function fbr
     git branch | sed "s/..//" | fzf > /tmp/fzf.result
     git checkout (cat /tmp/fzf.result)
     rm -f /tmp/fzf.result
+end
+
+function up -d 'cd backwards'
+    pwd | awk -v RS=/ '/\n/ {exit} {p=p $0 "/"; print p}' | gtac | eval (__fzfcmd) +m --select-1 --exit-0 $FZF_BCD_OPTS | read -l result
+    [ "$result" ]; and cd $result
+    commandline -f repaint
+end
+
+function cdhist -d 'cd to one of the previously visited locations'
+    # Clear non-existent folders from cdhist.
+    set -l buf
+    for i in (seq 1 (count $dirprev))
+        set -l dir $dirprev[$i]
+        if test -d $dir
+            set buf $buf $dir
+        end
+    end
+    set dirprev $buf
+    string join \n $dirprev | gtac | sed 1d | eval (__fzfcmd) +m $FZF_CDHIST_OPTS | read -l result
+    [ "$result" ]; and cd $result
+    commandline -f repaint
 end
 
 function fish_prompt
