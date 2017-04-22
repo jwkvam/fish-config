@@ -16,8 +16,6 @@ if contains (uname) "Linux"
 end
 set -x EDITOR nvim
 set -x NVIM_TUI_ENABLE_TRUE_COLOR 1
-set -x NVIM_TUI_ENABLE_CURSOR_SHAPE 1
-
 
 # PYSPARK
 set -x PYSPARK_DRIVER_PYTHON jupyter
