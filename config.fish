@@ -98,27 +98,7 @@ end
 fish_vi_key_bindings
 fish_user_key_bindings
 
-
-
-
-function _run_fasd -e fish_preexec
-    command fasd --proc (command fasd --sanitize "$argv" | tr -s ' ' \n) > "/dev/null" 2>&1 &
-end
-# fasd --proc (fasd --sanitize $argv | tr -s ' ' \n) > /dev/null 2>&1
-# fasd --proc (fish_split (fasd --sanitize $argv)) > /dev/null 2>&1
-
-function j
-    set -l dir (fasd -de "printf %s" "$argv")
-    if test "$dir" = ""
-        echo "no matching directory"
-        return 1
-    end
-    cd $dir
-end
-
-function e
-    fasd -fe vim "$argv"
-end
+[ -f /usr/local/share/autojump/autojump.fish ]; and source /usr/local/share/autojump/autojump.fish
 
 # function vf
 #     fzf > /tmp/fzfnv.result; and nvim (cat /tmp/fzfnv.result)
