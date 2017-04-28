@@ -3,8 +3,10 @@
 set PATH /usr/local/bin /usr/local/sbin $PATH
 if contains (uname) "Linux"
     set PATH ~/.linuxbrew/bin ~/.linuxbrew/sbin /usr/local/cuda/bin $PATH
+    set BREW_PREFIX $HOME/.linuxbrew
 else
     set PATH /usr/local/texlive/2016/bin/x86_64-darwin $PATH
+    set BREW_PREFIX /usr/local
 end
 set PATH ~/miniconda/bin $PATH
 source (conda info --root)/etc/fish/conf.d/conda.fish
@@ -98,7 +100,8 @@ end
 fish_vi_key_bindings
 fish_user_key_bindings
 
-[ -f /usr/local/share/autojump/autojump.fish ]; and source /usr/local/share/autojump/autojump.fish
+
+[ -f $BREW_PREFIX/share/autojump/autojump.fish ]; and source $BREW_PREFIX/share/autojump/autojump.fish
 
 # function vf
 #     fzf > /tmp/fzfnv.result; and nvim (cat /tmp/fzfnv.result)
