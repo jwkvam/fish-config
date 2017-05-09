@@ -1,11 +1,12 @@
-# set PATH /Users/jacques/miniconda/bin /Developer/NVIDIA/CUDA-7.0/bin /Users/jacques/.local/bin /usr/local/bin $PATH
-# set PATH /Users/jacques/miniconda/bin /Users/jacques/.local/bin /usr/local/bin /usr/local/sbin /usr/local/texlive/2016/bin/x86_64-darwin $PATH
 set PATH /usr/local/bin /usr/local/sbin $PATH
 if contains (uname) "Linux"
     set PATH ~/.linuxbrew/bin ~/.linuxbrew/sbin /usr/local/cuda/bin $PATH
     set BREW_PREFIX $HOME/.linuxbrew
 else
     set PATH /usr/local/texlive/2016/bin/x86_64-darwin $PATH
+    if test -d /usr/local/cuda/bin
+        set PATH /usr/local/cuda/bin $PATH
+    end
     set BREW_PREFIX /usr/local
 end
 set PATH ~/miniconda/bin $PATH
