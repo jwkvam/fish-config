@@ -8,6 +8,9 @@ else
         set PATH /usr/local/cuda/bin $PATH
     end
     set BREW_PREFIX /usr/local
+    set -x DYLD_LIBRARY_PATH /usr/local/cuda/lib /usr/local/cuda /usr/local/cuda/extras/CUPTI/lib
+    set -x LD_LIBRARY_PATH $DYLD_LIBRARY_PATH
+    set PATH $DYLD_LIBRARY_PATH $PATH
 end
 set PATH ~/miniconda/bin $PATH
 source (conda info --root)/etc/fish/conf.d/conda.fish
@@ -26,8 +29,8 @@ set -x PYSPARK_DRIVER_PYTHON_OPTS notebook
 set -x PYSPARK_PYTHON python
 
 set -x DJANGO_SETTINGS_MODULE apollo.settings.data
-set -x PYTHONPATH ~/dev/apollo
-set -x PYTHONPATH ~/dev/rover:$PYTHONPATH
+set -x PYTHONPATH ~/dev/rover
+set -x PYTHONPATH ~/dev/apollo:$PYTHONPATH
 # set -x PYTHONPATH ~/dev/capcom:$PYTHONPATH
 set -x GOPATH ~/.local
 
