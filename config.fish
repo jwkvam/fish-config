@@ -41,7 +41,7 @@ set -x PYTHONDONTWRITEBYTECODE 1
 set -x FZF_DEFAULT_COMMAND "rg --files --hidden -g '!.git'"
 set -x FZF_DEFAULT_OPTS "--inline-info"
 
-set -x FZF_CTRL_T_COMMAND 'rg --files'
+set -x FZF_CTRL_T_COMMAND "rg --files --hidden -g '!.git'"
 
 # great material here!
 # https://github.com/junegunn/dotfiles/blob/master/bashrc
@@ -89,8 +89,8 @@ function fzf-nvim-file-widget -d "List files and folders"
 
     # echo $FZF_CTRL_T_COMMAND
     # echo $FZF_CTRL_T_OPTS
-    # eval "$FZF_CTRL_T_COMMAND | "(__fzfcmd)" -m $FZF_CTRL_T_OPTS" | while read -l r; set result $result $r; end
-    eval ""(__fzfcmd)" -m $FZF_CTRL_T_OPTS" | while read -l r; set result $result $r; end
+    eval "$FZF_CTRL_T_COMMAND | "(__fzfcmd)" -m $FZF_CTRL_T_OPTS" | while read -l r; set result $result $r; end
+    # eval ""(__fzfcmd)" -m $FZF_CTRL_T_OPTS" | while read -l r; set result $result $r; end
     nvim $result
     commandline -f repaint
 end
