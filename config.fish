@@ -38,6 +38,7 @@ set -x GOPATH ~/.local
 set -x PYTHONDONTWRITEBYTECODE 1
 
 # set -x FZF_DEFAULT_COMMAND 'rg --files'
+# https://github.com/BurntSushi/ripgrep/issues/340
 set -x FZF_DEFAULT_COMMAND "rg --files --hidden -g '!.git'"
 set -x FZF_DEFAULT_OPTS "--inline-info"
 
