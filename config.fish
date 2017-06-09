@@ -65,7 +65,7 @@ alias i=ipython
 # . ~/.config/fish/key-bindings.fish
 . ~/.config/fish/functions/fzf_key_bindings.fish
  
-# Store last token in $dir as root for the 'find' command
+# /usr/local/Cellar/fish/2.6.0/share/doc/fish/commands.html
 function fzf-nvim-file-widget -d "List files and folders"
     eval "$FZF_CTRL_T_COMMAND | "(__fzfcmd)" -m $FZF_CTRL_T_OPTS" | while read -l r; set result $result $r; end
     commandline -f repaint
