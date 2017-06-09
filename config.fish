@@ -39,10 +39,10 @@ set -x PYTHONDONTWRITEBYTECODE 1
 
 # set -x FZF_DEFAULT_COMMAND 'rg --files'
 # https://github.com/BurntSushi/ripgrep/issues/340
-set -x FZF_DEFAULT_COMMAND "rg --files --hidden -g '!.git'"
+set -x FZF_DEFAULT_COMMAND "rg -L --files --hidden -g '!.git'"
 set -x FZF_DEFAULT_OPTS "--inline-info"
 
-set -x FZF_CTRL_T_COMMAND "rg --files --hidden -g '!.git'"
+set -x FZF_CTRL_T_COMMAND "rg -L --files --hidden -g '!.git'"
 
 # great material here!
 # https://github.com/junegunn/dotfiles/blob/master/bashrc
@@ -67,33 +67,11 @@ alias i=ipython
  
 # Store last token in $dir as root for the 'find' command
 function fzf-nvim-file-widget -d "List files and folders"
-    # set -l dir (commandline -t)
-    # # The commandline token might be escaped, we need to unescape it.
-    # set dir (eval "printf '%s' $dir")
-    # if [ ! -d "$dir" ]
-    #   set dir .
-    # end
-    # # Some 'find' versions print undesired duplicated slashes if the path ends with slashes.
-    # set dir (string replace --regex '(.)/+$' '$1' "$dir")
-
-    # "-path \$dir'*/\\.*'" matches hidden files/folders inside $dir but not
-    # $dir itself, even if hidden.
-    # set -q FZF_CTRL_T_COMMAND; or set -l FZF_CTRL_T_COMMAND "
-    # command findx -L . " #-type f -print -o -type l -print 2> /dev/null | cut -b3-"
-    # command find -L . -mindepth 1 \( -path '*/\\.*' -o -fstype 'devfs' -o -fstype 'devtmpfs' \) -prune \
-    # -o -type f -print \
-    # -o -type l -print 2> /dev/null"
-    
-    # | cut -b3-"
-    
-    # sed '1d; s#^\./##'"
-
-    # echo $FZF_CTRL_T_COMMAND
-    # echo $FZF_CTRL_T_OPTS
     eval "$FZF_CTRL_T_COMMAND | "(__fzfcmd)" -m $FZF_CTRL_T_OPTS" | while read -l r; set result $result $r; end
-    # eval ""(__fzfcmd)" -m $FZF_CTRL_T_OPTS" | while read -l r; set result $result $r; end
-    nvim $result
     commandline -f repaint
+    if [ -n "$result" ]
+        nvim $result
+    end
 end
 
 function fish_user_key_bindings
