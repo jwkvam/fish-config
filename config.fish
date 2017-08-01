@@ -91,6 +91,7 @@ end
 fish_vi_key_bindings
 fish_user_key_bindings
 
+alias cdw=fzf-cd-widget
 
 [ -f $BREW_PREFIX/share/autojump/autojump.fish ]; and source $BREW_PREFIX/share/autojump/autojump.fish
 
