@@ -48,6 +48,8 @@ set -x FZF_CTRL_T_COMMAND "rg -L --files --hidden -g '!.git'"
 # https://github.com/junegunn/dotfiles/blob/master/bashrc
 set -x FZF_CTRL_T_OPTS '--preview "highlight --failsafe -O ansi {} 2> /dev/null | head -200"'
 
+alias ls=exa
+alias kr='knowledge_repo --repo ~/dev/knowledge'
 alias rgs=rg
 alias rg="rg -S"
 alias sshb="ssh jacques@harmonic.local"
