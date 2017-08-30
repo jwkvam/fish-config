@@ -49,12 +49,14 @@ set -x FZF_CTRL_T_COMMAND "rg -L --files --hidden -g '!.git'"
 set -x FZF_CTRL_T_OPTS '--preview "highlight --failsafe -O ansi {} 2> /dev/null | head -200"'
 
 alias ls=exa
+alias lt='exa -ls mod'
 alias kr='knowledge_repo --repo ~/dev/knowledge'
 alias rgs=rg
 alias rg="rg -S"
 alias sshb="ssh jacques@harmonic.local"
 alias ff="find . -name"
 alias vi="nvim"
+alias vin="nvim ~/.config/nvim/init.vim"
 alias v="nvim"
 alias magit="nvim -c MagitOnly"
 alias pag="ps aux | rg -N"
