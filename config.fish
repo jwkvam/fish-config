@@ -20,6 +20,7 @@ set DYLD_FALLBACK_LIBRARY_PATH $DYLD_FALLBACK_LIBRARY_PATH /Users/jacques/minico
 if contains (uname) "Linux"
     set LD_LIBRARY_PATH /usr/local/cuda/lib64
 end
+set -x HOMEBREW_NO_ANALYTICS 1
 set -x EDITOR nvim
 set -x NVIM_TUI_ENABLE_TRUE_COLOR 1
 
