@@ -67,6 +67,8 @@ alias pug="ps ux | rg -N"
 alias pytest='py.test'
 alias i=ipython
 
+./set-aws-credentials.py | source
+
 # . ~/.config/fish/key-bindings.fish
 . ~/.config/fish/functions/fzf_key_bindings.fish
  
