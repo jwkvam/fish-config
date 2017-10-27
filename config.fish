@@ -1,4 +1,4 @@
-set PATH /usr/local/bin /usr/local/sbin $PATH
+set PATH ~/.cargo/bin /usr/local/bin $PATH
 if contains (uname) "Linux"
     set PATH ~/.linuxbrew/bin ~/.linuxbrew/sbin /usr/local/cuda/bin $PATH
     set BREW_PREFIX $HOME/.linuxbrew
@@ -51,6 +51,7 @@ set -x FZF_CTRL_T_OPTS '--preview "highlight --failsafe -O ansi {} 2> /dev/null 
 
 alias ls=exa
 alias lt='exa -ls mod'
+alias skhd_bash='begin; set -lx SHELL /bin/bash; skhd; end'
 alias kr='knowledge_repo --repo ~/dev/knowledge'
 alias rgs=rg
 alias rg="rg -S"
@@ -62,12 +63,17 @@ alias v="nvim"
 alias magit="nvim -c MagitOnly"
 alias pag="ps aux | rg -N"
 alias pug="ps ux | rg -N"
+alias debug="python -m pdb -c continue"
 
 # I always forget the dot
 alias pytest='py.test'
 alias i=ipython
 
-~/.config/fish/set-aws-credentials.py | source
+set -l sourcedir (dirname (status --current-filename))
+
+# zappa docker stuff
+eval $sourcedir/set-aws-credentials.py | source
+alias zappashell='docker run -ti -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -v (pwd):/var/task --rm zappa bash'
 
 # . ~/.config/fish/key-bindings.fish
 . ~/.config/fish/functions/fzf_key_bindings.fish
