@@ -1,7 +1,12 @@
-set PATH ~/.cargo/bin /usr/local/bin $PATH
+set PATH /usr/local/bin $PATH
+if test -d ~/.cargo
+    set PATH ~/.cargo/bin $PATH
+end
 if contains (uname) "Linux"
-    set PATH ~/.linuxbrew/bin ~/.linuxbrew/sbin /usr/local/cuda/bin $PATH
-    set BREW_PREFIX $HOME/.linuxbrew
+    if test -d ~/.linuxbrew
+        set PATH ~/.linuxbrew/bin ~/.linuxbrew/sbin /usr/local/cuda/bin $PATH
+        set BREW_PREFIX $HOME/.linuxbrew
+    end
 else
     set PATH /usr/local/texlive/2016/bin/x86_64-darwin $PATH
     if test -d /usr/local/cuda/bin
@@ -49,7 +54,9 @@ set -x FZF_CTRL_T_COMMAND "rg -L --files --hidden -g '!.git'"
 # https://github.com/junegunn/dotfiles/blob/master/bashrc
 set -x FZF_CTRL_T_OPTS '--preview "highlight --failsafe -O ansi {} 2> /dev/null | head -200"'
 
-alias ls=exa
+if type -q exa
+    alias ls=exa
+end
 alias lt='exa -ls mod'
 alias skhd_bash='begin; set -lx SHELL /bin/bash; skhd; end'
 alias kr='knowledge_repo --repo ~/dev/knowledge'
@@ -106,7 +113,14 @@ fish_user_key_bindings
 
 alias cdw=fzf-cd-widget
 
-[ -f $BREW_PREFIX/share/autojump/autojump.fish ]; and source $BREW_PREFIX/share/autojump/autojump.fish
+if test -f /usr/share/autojump/autojump.fish
+    source /usr/share/autojump/autojump.fish
+end
+if set -q BREW_PREFIX
+    if test -f $BREW_PREFIX/share/autojump/autojump.fish
+        source $BREW_PREFIX/share/autojump/autojump.fish
+    end
+end
 
 # function vf
 #     fzf > /tmp/fzfnv.result; and nvim (cat /tmp/fzfnv.result)

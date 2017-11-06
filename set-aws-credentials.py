@@ -23,4 +23,7 @@ def setAwsCredentials(args):
     print(f"set -x AWS_ACCESS_KEY_ID {access}; set -x AWS_SECRET_ACCESS_KEY {secret}")
 
 if __name__ == "__main__":
-    setAwsCredentials(sys.argv)
+    try:
+        setAwsCredentials(sys.argv)
+    except:
+        pass
