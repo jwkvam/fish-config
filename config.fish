@@ -8,14 +8,16 @@ if contains (uname) "Linux"
         set BREW_PREFIX $HOME/.linuxbrew
     end
 else
-    set PATH /usr/local/texlive/2016/bin/x86_64-darwin $PATH
+    set PATH /usr/local/texlive/2017/bin/x86_64-darwin $PATH
     if test -d /usr/local/cuda/bin
         set PATH /usr/local/cuda/bin $PATH
     end
     set BREW_PREFIX /usr/local
     set -x DYLD_LIBRARY_PATH /usr/local/cuda/lib /usr/local/cuda /usr/local/cuda/extras/CUPTI/lib
     set -x LD_LIBRARY_PATH $DYLD_LIBRARY_PATH
-    set PATH $DYLD_LIBRARY_PATH $PATH
+end
+if test -d ~/.fzf
+    set PATH ~/.fzf/bin $PATH
 end
 set PATH ~/miniconda/bin $PATH
 source (conda info --root)/etc/fish/conf.d/conda.fish
@@ -54,10 +56,10 @@ set -x FZF_CTRL_T_COMMAND "rg -L --files --hidden -g '!.git'"
 # https://github.com/junegunn/dotfiles/blob/master/bashrc
 set -x FZF_CTRL_T_OPTS '--preview "highlight --failsafe -O ansi {} 2> /dev/null | head -200"'
 
-if type -q exa
-    alias ls=exa
-end
-alias lt='exa -ls mod'
+# if type -q exa
+#     alias ls=exa
+# end
+# alias lt='exa -ls mod'
 alias skhd_bash='begin; set -lx SHELL /bin/bash; skhd; end'
 alias kr='knowledge_repo --repo ~/dev/knowledge'
 alias rgs=rg
@@ -83,7 +85,7 @@ eval $sourcedir/set-aws-credentials.py | source
 alias zappashell='docker run -ti -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -v (pwd):/var/task --rm zappa bash'
 
 # . ~/.config/fish/key-bindings.fish
-. ~/.config/fish/functions/fzf_key_bindings.fish
+source ~/.config/fish/functions/fzf_key_bindings.fish
  
 # /usr/local/Cellar/fish/2.6.0/share/doc/fish/commands.html
 function fzf-nvim-file-widget -d "List files and folders"
@@ -259,5 +261,5 @@ function fish_right_prompt
 end
 
 if test -e ~/.config/fish/private.fish
-    . ~/.config/fish/private.fish
+    source ~/.config/fish/private.fish
 end
