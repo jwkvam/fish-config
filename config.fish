@@ -1,7 +1,7 @@
 set PATH /usr/local/bin $PATH
-if test -d ~/.cargo
-    set PATH ~/.cargo/bin $PATH
-end
+# if test -d ~/.cargo
+#     set PATH ~/.cargo/bin $PATH
+# end
 if contains (uname) "Linux"
     if test -d ~/.linuxbrew
         set PATH ~/.linuxbrew/bin ~/.linuxbrew/sbin /usr/local/cuda/bin $PATH
@@ -20,7 +20,6 @@ if test -d ~/.fzf
     set PATH ~/.fzf/bin $PATH
 end
 set PATH ~/miniconda/bin $PATH
-source (conda info --root)/etc/fish/conf.d/conda.fish
 set PATH ~/.local/bin $PATH
 #set DYLD_LIBRARY_PATH /Developer/NVIDIA/CUDA-7.0/lib $DYLD_LIBRARY_PATH
 set DYLD_FALLBACK_LIBRARY_PATH $DYLD_FALLBACK_LIBRARY_PATH /Users/jacques/miniconda/lib
@@ -259,6 +258,8 @@ function fish_right_prompt
   end
   echo -n -s $dark_gray '['(date +%H:%M:%S)']'
 end
+
+source (conda info --root)/etc/fish/conf.d/conda.fish
 
 if test -e ~/.config/fish/private.fish
     source ~/.config/fish/private.fish
