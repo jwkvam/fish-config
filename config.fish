@@ -35,10 +35,7 @@ set -x PYSPARK_DRIVER_PYTHON jupyter
 set -x PYSPARK_DRIVER_PYTHON_OPTS notebook
 set -x PYSPARK_PYTHON python
 
-set -x DJANGO_SETTINGS_MODULE apollo.settings.data
 set -x PYTHONPATH ~/dev/rover
-set -x PYTHONPATH ~/dev/apollo:$PYTHONPATH
-# set -x PYTHONPATH ~/dev/capcom:$PYTHONPATH
 set -x GOPATH ~/.local
 
 # don't generate pyc files
