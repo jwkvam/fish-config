@@ -69,6 +69,7 @@ alias magit="nvim -c MagitOnly"
 alias pag="ps aux | rg -N"
 alias pug="ps ux | rg -N"
 alias debug="python -m pdb -c continue"
+alias vimdiff="nvim -d"
 
 # I always forget the dot
 alias pytest='py.test'
