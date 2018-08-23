@@ -8,7 +8,7 @@ if contains (uname) "Linux"
         set BREW_PREFIX $HOME/.linuxbrew
     end
 else
-    set PATH /usr/local/texlive/2017/bin/x86_64-darwin $PATH
+    set PATH /usr/local/texlive/2018/bin/x86_64-darwin $PATH
     if test -d /usr/local/cuda/bin
         set PATH /usr/local/cuda/bin $PATH
     end
@@ -26,6 +26,7 @@ set DYLD_FALLBACK_LIBRARY_PATH $DYLD_FALLBACK_LIBRARY_PATH /Users/jacques/minico
 if contains (uname) "Linux"
     set LD_LIBRARY_PATH /usr/local/cuda/lib64
 end
+set -x SPARK_HOME /usr/local/Cellar/apache-spark/2.3.1/libexec
 set -x HOMEBREW_NO_ANALYTICS 1
 set -x EDITOR nvim
 set -x NVIM_TUI_ENABLE_TRUE_COLOR 1
