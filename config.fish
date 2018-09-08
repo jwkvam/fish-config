@@ -71,6 +71,7 @@ alias pag="ps aux | rg -N"
 alias pug="ps ux | rg -N"
 alias debug="python -m pdb -c continue"
 alias vimdiff="nvim -d"
+alias icat="kitty +kitten icat"
 
 # I always forget the dot
 alias pytest='py.test'
